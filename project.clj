@@ -8,7 +8,8 @@
   :node-dependencies [[source-map-support "0.2.8"]]
 
   :plugins [[lein-cljsbuild "1.0.4"]
-            [lein-npm "0.4.0"] ]
+            [lein-npm "0.4.0"]
+            [com.cemerick/clojurescript.test "0.3.3"]]
 
   :source-paths ["src" "target/classes"]
 
@@ -34,11 +35,12 @@
                                    :pretty-print false}}
                        {:id "test"
                         :source-paths ["src" "test"]
-                        :notify-command ["phantomjs" "phantom/unit-test.js" "phantom/unit-test.html"]
+                        :notify-command ["phantomjs" :cljs.test/runner "out-test/ultimate_ttt.test.js"]
                         :compiler {
                                    ; :main ultimate-ttt.core
                                    :output-to "out-test/ultimate_ttt.test.js"
                                    :output-dir "out-test"
                                    :optimizations :whitespace
-                                   :pretty-print true}}]
-              :test-commands {"test" ["phantomjs" "phantom/unit-test.js" "phantom/unit-test.html"]}})
+                                   :pretty-print true
+                                   :cache-analysis true}}]
+              :test-commands {"test" ["phantomjs" :runner "out-test/ultimate_ttt.test.js"]}})

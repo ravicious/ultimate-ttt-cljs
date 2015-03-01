@@ -1,5 +1,7 @@
 (ns ultimate-ttt.board-test
-  (:require [cljs.test :refer-macros [deftest testing is]]
+  (:require-macros [cemerick.cljs.test
+                    :refer (is deftest with-test run-tests testing test-var)])
+  (:require [cemerick.cljs.test :as t]
             [ultimate-ttt.board :as b]))
 
 ;;; Here we modify the cells so that each value is equal to its index.
