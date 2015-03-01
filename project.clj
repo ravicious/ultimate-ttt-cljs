@@ -1,9 +1,9 @@
 (defproject ultimate-ttt "0.1.0-SNAPSHOT"
-  :description "FIXME: write this!"
-  :url "http://example.com/FIXME"
+  :description "Ultimate Tic-Tac-Toe written in ClojureScript"
+  :url "https://github.com/ravicious/ultimate-ttt-cljs"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2755"] ]
+                 [org.clojure/clojurescript "0.0-2755"]]
 
   :node-dependencies [[source-map-support "0.2.8"]]
 
@@ -37,7 +37,6 @@
                         :source-paths ["src" "test"]
                         :notify-command ["phantomjs" :cljs.test/runner "out-test/ultimate_ttt.test.js"]
                         :compiler {
-                                   ; :main ultimate-ttt.core
                                    :output-to "out-test/ultimate_ttt.test.js"
                                    :output-dir "out-test"
                                    :optimizations :whitespace
