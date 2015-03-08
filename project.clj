@@ -39,11 +39,11 @@
                                    :pretty-print false}}
                        {:id "test"
                         :source-paths ["src" "test"]
-                        :notify-command ["phantomjs" :cljs.test/runner "out-test/ultimate_ttt.test.js"]
+                        :notify-command ["slimerjs" :cljs.test/runner "out-test/ultimate_ttt.test.js"]
                         :compiler {
                                    :output-to "out-test/ultimate_ttt.test.js"
                                    :output-dir "out-test"
                                    :optimizations :whitespace
                                    :pretty-print true
                                    :cache-analysis true}}]
-              :test-commands {"test" ["phantomjs" :runner "out-test/ultimate_ttt.test.js"]}})
+              :test-commands {"test" ["slimerjs" :runner "out-test/ultimate_ttt.test.js"]}})
