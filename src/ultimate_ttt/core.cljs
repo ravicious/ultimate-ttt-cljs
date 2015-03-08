@@ -1,9 +1,9 @@
-(ns ultimate-ttt.core
-  (:require [clojure.browser.repl :as repl]
-            [goog.dom :as dom]))
-
-; (repl/connect "http://localhost:9000/repl")
+(ns ^:figwheel-always ultimate-ttt.core
+  (:require [figwheel.client :as fw]))
 
 (enable-console-print!)
 
 (println "Ready.")
+
+(fw/start {
+           :on-jsload (fn [] (print "reloaded"))})
