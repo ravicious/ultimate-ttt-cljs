@@ -38,4 +38,6 @@
 (deftest set-cell
   (testing "setting cell"
     (let [modified-board (b/set-cell board 0 0 2)]
-      (is (= 2 (b/get-cell modified-board 0 0))))))
+      (is (= 2 (b/get-cell modified-board 0 0)))))
+  (testing "setting an invalid owner"
+    (is (thrown-with-msg? js/Error #"Assert failed" (b/set-cell board 0 0 4)))))

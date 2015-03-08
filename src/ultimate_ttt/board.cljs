@@ -1,5 +1,7 @@
 (ns ultimate-ttt.board)
 
+(def ^:private allowed-owners #{1 2})
+
 (defrecord Board [cells])
 
 (defn size [{cells :cells}]
@@ -39,5 +41,6 @@
 (defn set-cell
   "Given a board and coordinates, sets a new cell owner"
   [{cells :cells, :as board} x y owner]
+  {:pre [(allowed-owners owner)]}
   (let [index (calculate-index board x y)]
     (assoc-in board [:cells index] owner)))
