@@ -5,12 +5,6 @@
 (defn- coordinates->owners [board coordinates]
   (map #(b/get-cell board (first %) (second %)) coordinates))
 
-(defn- sum-rows [board rows]
-  (->>
-   rows
-   (map #(coordinates->owners board %))
-   (map #(reduce + %))))
-
 (defn- any-row-won-by-player?
   "Given rows of cell owners, determines if any row has been won by player x"
   [cell-owners x]
