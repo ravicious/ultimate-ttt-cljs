@@ -2,7 +2,6 @@
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [ultimate-ttt.board :as board-helper]
-            [ultimate-ttt.extract-row-coordinates :as extract-coordinates]
             [ultimate-ttt.view-helpers :as view-helpers]))
 
 (defn- cell-component [[[x y] cell-owner] owner]
@@ -29,7 +28,7 @@
     om/IRender
     (render [_]
       (let [board-size (board-helper/size board)
-            coordinates (extract-coordinates/all-cells board-size)
+            coordinates (board-helper/all-cells board-size)
             owners (board-helper/coordinates->owners board coordinates)
             coords-and-owner (map vector coordinates owners)
             rows (partition 3 coords-and-owner)]

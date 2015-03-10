@@ -1,17 +1,11 @@
 (ns ultimate-ttt.extract-row-coordinates
-  (:require [math.combinatorics :as combo]))
-
-(defn all-cells
-  "Given a board size, returns coordinates for all possible cells in a board."
-  [board-size]
-  (for [x (range 0 board-size)
-        y (range 0 board-size)]
-    (list x y)))
+  (:require [ultimate-ttt.board :as board]
+            [math.combinatorics :as combo]))
 
 (defn- horizontal-rows
   "Given a board size, returns all of its horizontal rows."
   [board-size]
-  (partition board-size board-size (all-cells board-size)))
+  (partition board-size board-size (board/all-cells board-size)))
 
 (defn- row-coordinates?
   "Checks if given coordinates are in the same row and if they cover all of it.

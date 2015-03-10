@@ -48,3 +48,10 @@
 (defn coordinates->owners [board coordinates]
   (map #(get-cell board (first %) (second %)) coordinates))
 
+(defn all-cells
+  "Given a board size, returns coordinates for all possible cells in a board."
+  [board-size]
+  (for [x (range 0 board-size)
+        y (range 0 board-size)]
+    (list x y)))
+
