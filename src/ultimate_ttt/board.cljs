@@ -44,3 +44,7 @@
   {:pre [(allowed-owners owner)]}
   (let [index (calculate-index board x y)]
     (assoc-in board [:cells index] owner)))
+
+(defn coordinates->owners [board coordinates]
+  (map #(get-cell board (first %) (second %)) coordinates))
+

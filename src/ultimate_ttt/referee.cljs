@@ -2,9 +2,6 @@
   (:require [ultimate-ttt.board :as b]
             [ultimate-ttt.extract-row-coordinates :refer [extract-row-coordinates]]))
 
-(defn- coordinates->owners [board coordinates]
-  (map #(b/get-cell board (first %) (second %)) coordinates))
-
 (defn- any-row-won-by-player?
   "Given rows of cell owners, determines if any row has been won by player x"
   [cell-owners x]
@@ -25,5 +22,5 @@
   (->>
    (b/size board)
    (extract-row-coordinates)
-   (map #(coordinates->owners board %))
+   (map #(b/coordinates->owners board %))
    (select-winner)))
