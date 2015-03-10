@@ -1,7 +1,7 @@
 (ns ultimate-ttt.extract-row-coordinates
   (:require [math.combinatorics :as combo]))
 
-(defn- all-cells
+(defn all-cells
   "Given a board size, returns coordinates for all possible cells in a board."
   [board-size]
   (for [x (range 0 board-size)
