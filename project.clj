@@ -3,7 +3,7 @@
   :url "https://github.com/ravicious/ultimate-ttt-cljs"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2755"]]
+                 [org.clojure/clojurescript "0.0-3058"]]
 
   :node-dependencies [[source-map-support "0.2.8"]]
 
