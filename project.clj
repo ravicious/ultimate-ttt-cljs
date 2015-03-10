@@ -4,7 +4,8 @@
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-3058"]
-                 [figwheel "0.2.5-SNAPSHOT"]]
+                 [figwheel "0.2.5-SNAPSHOT"]
+                 [org.omcljs/om "0.8.8"]]
 
   :node-dependencies [[source-map-support "0.2.8"]]
 
