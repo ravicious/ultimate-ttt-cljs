@@ -1,4 +1,4 @@
-(ns ultimate-ttt.board-component
+(ns ultimate-ttt.components.board
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [ultimate-ttt.board :as board-helper]

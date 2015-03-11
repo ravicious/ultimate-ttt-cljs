@@ -5,7 +5,7 @@
             [ultimate-ttt.board :as board-helpers]
             [ultimate-ttt.referee :as referee]
             [ultimate-ttt.view-helpers :as view-helpers]
-            [ultimate-ttt.board-component :as board-component]))
+            [ultimate-ttt.components.board :as board-component]))
 
 (enable-console-print!)
 
