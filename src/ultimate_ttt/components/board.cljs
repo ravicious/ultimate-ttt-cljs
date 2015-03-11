@@ -23,8 +23,10 @@
       (apply dom/tr nil
              (map #(om/build cell-component %) row-cells)))))
 
-(defn board-component [board owner]
+(defn board [board owner]
   (reify
+    om/IDisplayName
+    (display-name [_] "Minor board")
     om/IRender
     (render [_]
       (let [board-size (board-helper/size board)
