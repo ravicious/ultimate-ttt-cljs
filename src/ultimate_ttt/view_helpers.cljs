@@ -4,5 +4,5 @@
   (case owner
     1 "X"
     2 "O"
-    nil))
+    "-"))
 
