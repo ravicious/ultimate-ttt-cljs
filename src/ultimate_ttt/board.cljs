@@ -33,6 +33,13 @@
   (let [board-size (size board)]
     (+ y (* board-size x))))
 
+(defn calculate-coordinates
+  "Translates 1D index to 2D coordinates"
+  [board i]
+  {:post [(apply within-bounds? board %)]}
+  (let [board-size (size board)]
+    (list (quot i board-size) (mod i board-size))))
+
 (defn get-cell
   "Given a board and coordinates, returns the cell owner"
   [{cells :cells, :as board} x y]

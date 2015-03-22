@@ -41,3 +41,7 @@
       (is (= 2 (b/get-cell modified-board 0 0)))))
   (testing "setting an invalid owner"
     (is (thrown-with-msg? js/Error #"Assert failed" (b/set-cell board 0 0 4)))))
+
+(deftest calculate-coordinates
+  (is (= '(1 1) (b/calculate-coordinates board 4)))
+  (is (= '(2 0) (b/calculate-coordinates board 6))))
