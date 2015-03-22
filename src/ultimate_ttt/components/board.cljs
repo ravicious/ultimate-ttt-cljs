@@ -11,12 +11,12 @@
   (apply str (map key-for-cell row)))
 
 (defn- cell-component [{:keys [owner index board-cursor] :as cell}]
-  [:td
+  [:td.minor-board--cell
    {:on-click #(state-handler/on-cell-click index board-cursor)}
    (view-helpers/owner->player owner)])
 
 (defn- row-component [cells]
-  [:tr
+  [:tr.minor-board--row
    (doall
      (for [cell cells]
        ^{:key (key-for-cell cell)} [cell-component cell]))])
@@ -27,7 +27,7 @@
         raw-cells (map vector (:cells board-record) (range) (repeat board-cursor))
         cells (map #(zipmap [:owner :index :board-cursor] %) raw-cells)
         rows (partition 3 cells)]
-    [:table
+    [:table.minor-board--table
      (doall
        (for [row rows]
          ^{:key (key-for-row row)} [row-component row]))]))
