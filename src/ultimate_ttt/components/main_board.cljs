@@ -16,14 +16,14 @@
 (defn- key-for-row [row]
   (apply str (map key-for-board row)))
 
-(defn- cell-component [board-cursor app-state]
-  [:td [board-component/board board-cursor app-state]])
+(defn- cell-component [board-cursor]
+  [:td [board-component/board board-cursor]])
 
-(defn- row-component [board-cursors app-state]
+(defn- row-component [board-cursors]
   [:tr
    (doall
      (for [board board-cursors]
-       ^{:key (key-for-board board)} [cell-component board app-state]))])
+       ^{:key (key-for-board board)} [cell-component board]))])
 
 (defn main-board [app-state]
   (let [board-cursors (cursors-for-seq-in-atom app-state [:boards])
