@@ -1,5 +1,5 @@
-(ns ultimate-ttt.extract-row-coordinates
-  (:require [ultimate-ttt.board :as board]
+(ns ultimate-ttt.game.extract-row-coordinates
+  (:require [ultimate-ttt.game.board :as board]
             [math.combinatorics :as combo]))
 
 (defn- horizontal-rows

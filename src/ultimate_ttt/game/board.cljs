@@ -1,4 +1,4 @@
-(ns ultimate-ttt.board)
+(ns ultimate-ttt.game.board)
 
 (def ^:private allowed-owners #{1 2})
 

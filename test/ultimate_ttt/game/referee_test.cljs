@@ -1,9 +1,9 @@
-(ns ultimate-ttt.referee-test
+(ns ultimate-ttt.game.referee-test
   (:require-macros [cemerick.cljs.test
                     :refer (is deftest with-test run-tests testing test-var)])
   (:require [cemerick.cljs.test :as t]
-            [ultimate-ttt.board :as b]
-            [ultimate-ttt.referee :as r]))
+            [ultimate-ttt.game.board :as b]
+            [ultimate-ttt.game.referee :as r]))
 
 (def board-won-by-player-1
   (let [new-board (b/init-board)]

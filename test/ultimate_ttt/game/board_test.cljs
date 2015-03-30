@@ -1,8 +1,8 @@
-(ns ultimate-ttt.board-test
+(ns ultimate-ttt.game.board-test
   (:require-macros [cemerick.cljs.test
                     :refer (is deftest with-test run-tests testing test-var)])
   (:require [cemerick.cljs.test :as t]
-            [ultimate-ttt.board :as b]))
+            [ultimate-ttt.game.board :as b]))
 
 ;;; Here we modify the cells so that each value is equal to its index.
 ;;; It makes testing get-cell method easier.

@@ -1,8 +1,8 @@
-(ns ultimate-ttt.extract-row-coordinates-test
+(ns ultimate-ttt.game.extract-row-coordinates-test
   (:require-macros [cemerick.cljs.test
                     :refer (is deftest with-test run-tests testing test-var)])
   (:require [cemerick.cljs.test :as t]
-            [ultimate-ttt.extract-row-coordinates :as erc]))
+            [ultimate-ttt.game.extract-row-coordinates :as erc]))
 
 (deftest extract-rows
   (testing "all possible rows for a board of size two"

@@ -1,8 +1,8 @@
 (ns ^:figwheel-always ultimate-ttt.core
   (:require [figwheel.client :as fw]
             [reagent.core :as reagent :refer [atom]]
-            [ultimate-ttt.board :as board-helpers]
-            [ultimate-ttt.referee :as referee]
+            [ultimate-ttt.game.board :as board-helpers]
+            [ultimate-ttt.game.referee :as referee]
             [ultimate-ttt.view-helpers :as view-helpers]
             [ultimate-ttt.components.main-board :as main-board]
             [ultimate-ttt.state-handler :as state-handler]))

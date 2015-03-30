@@ -1,6 +1,6 @@
 (ns ultimate-ttt.state-handler
   (:require [reagent.core :as reagent :refer [atom]]
-            [ultimate-ttt.board :as board-helper]))
+            [ultimate-ttt.game.board :as board-helper]))
 
 (defn- init-boards []
   (let [boards (repeatedly #(board-helper/init-board 3))

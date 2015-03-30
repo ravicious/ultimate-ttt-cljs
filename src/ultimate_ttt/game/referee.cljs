@@ -1,6 +1,6 @@
-(ns ultimate-ttt.referee
-  (:require [ultimate-ttt.board :as b]
-            [ultimate-ttt.extract-row-coordinates :refer [extract-row-coordinates]]))
+(ns ultimate-ttt.game.referee
+  (:require [ultimate-ttt.game.board :as b]
+            [ultimate-ttt.game.extract-row-coordinates :refer [extract-row-coordinates]]))
 
 (defn- any-row-won-by-player?
   "Given rows of cell owners, determines if any row has been won by player x"

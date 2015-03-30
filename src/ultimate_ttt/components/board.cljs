@@ -1,6 +1,6 @@
 (ns ultimate-ttt.components.board
   (:require [reagent.core :as reagent]
-            [ultimate-ttt.board :as board-helper]
+            [ultimate-ttt.game.board :as board-helper]
             [ultimate-ttt.view-helpers :as view-helpers]
             [ultimate-ttt.state-handler :as state-handler]))
 
