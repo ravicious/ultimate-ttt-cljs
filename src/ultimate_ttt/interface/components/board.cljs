@@ -1,8 +1,8 @@
-(ns ultimate-ttt.components.board
+(ns ultimate-ttt.interface.components.board
   (:require [reagent.core :as reagent]
             [ultimate-ttt.game.board :as board-helper]
-            [ultimate-ttt.view-helpers :as view-helpers]
-            [ultimate-ttt.state-handler :as state-handler]))
+            [ultimate-ttt.interface.view-helpers :as view-helpers]
+            [ultimate-ttt.interface.state-handler :as state-handler]))
 
 (defn- key-for-cell [cell]
   (:index cell))

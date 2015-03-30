@@ -1,6 +1,6 @@
-(ns ultimate-ttt.components.main-board
+(ns ultimate-ttt.interface.components.main-board
   (:require [reagent.core :as reagent]
-            [ultimate-ttt.components.board :as board-component]))
+            [ultimate-ttt.interface.components.board :as board-component]))
 
 
 (defn- cursors-for-seq-in-atom [given-atom path]

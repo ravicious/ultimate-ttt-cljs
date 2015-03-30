@@ -3,9 +3,9 @@
             [reagent.core :as reagent :refer [atom]]
             [ultimate-ttt.game.board :as board-helpers]
             [ultimate-ttt.game.referee :as referee]
-            [ultimate-ttt.view-helpers :as view-helpers]
-            [ultimate-ttt.components.main-board :as main-board]
-            [ultimate-ttt.state-handler :as state-handler]))
+            [ultimate-ttt.interface.view-helpers :as view-helpers]
+            [ultimate-ttt.interface.components.main-board :as main-board]
+            [ultimate-ttt.interface.state-handler :as state-handler]))
 
 (enable-console-print!)
 

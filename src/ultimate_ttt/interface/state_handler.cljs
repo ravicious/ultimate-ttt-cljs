@@ -1,4 +1,4 @@
-(ns ultimate-ttt.state-handler
+(ns ultimate-ttt.interface.state-handler
   (:require [reagent.core :as reagent :refer [atom]]
             [ultimate-ttt.game.board :as board-helper]))
 

@@ -1,4 +1,4 @@
-(ns ultimate-ttt.view-helpers)
+(ns ultimate-ttt.interface.view-helpers)
 
 (defn owner->player [owner]
   (case owner
