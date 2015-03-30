@@ -1,34 +1,28 @@
 (ns ultimate-ttt.interface.components.main-board
   (:require [reagent.core :as reagent]
-            [ultimate-ttt.interface.components.board :as board-component]))
+            [ultimate-ttt.interface.components.board :as board-component]
+            [re-frame.core :refer [subscribe]]))
 
-
-(defn- cursors-for-seq-in-atom [given-atom path]
-  {:pre [(vector? (get-in @given-atom path))]}
-  (let [seq-to-cursorify (get-in @given-atom path)
-        count-of-seq (count seq-to-cursorify)]
-    (vec
-      (map #(reagent/cursor given-atom (conj path %)) (range count-of-seq)))))
-
-(defn key-for-board [board-cursor]
-  (apply str (:coordinates @board-cursor)))
+(defn key-for-board [board-index]
+  (str "board" board-index))
 
 (defn- key-for-row [row]
-  (apply str (map key-for-board row)))
+  (apply str "row" row))
 
-(defn- cell-component [board-cursor]
-  [:td [board-component/board board-cursor]])
+(defn- cell-component [board-index]
+  [:td [board-component/board board-index]])
 
-(defn- row-component [board-cursors]
+(defn- row-component [board-indexes]
   [:tr
    (doall
-     (for [board board-cursors]
-       ^{:key (key-for-board board)} [cell-component board]))])
+     (for [board-index board-indexes]
+       ^{:key (key-for-board board-index)} [cell-component board-index]))])
 
-(defn main-board [app-state]
-  (let [board-cursors (cursors-for-seq-in-atom app-state [:boards])
-        rows (partition 3 board-cursors)]
-    [:table
-     (doall
-       (for [row rows]
-         ^{:key (key-for-row row)} [row-component row app-state]))]))
+(defn main-board []
+  (let [main-board-cells-count (subscribe [:main-board-cells-count])]
+    (fn []
+      (let [rows (partition 3 (range @main-board-cells-count))]
+        [:table
+         (doall
+           (for [row rows]
+             ^{:key (key-for-row row)} [row-component row]))]))))

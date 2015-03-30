@@ -2,19 +2,7 @@
   (:require [reagent.core :as reagent :refer [atom]]
             [ultimate-ttt.game.board :as board-helper]))
 
-(defn- init-boards []
-  (let [boards (repeatedly #(board-helper/init-board 3))
-        coordinates (board-helper/all-cells 3)]
-    (->>
-      (map list boards coordinates)
-      (map #(zipmap [:board :coordinates] %))
-      (vec))))
-
-(defonce app-state (atom {:main-board (board-helper/init-board)
-                          :current-owner 1
-                          :boards (init-boards)
-                          :active-board nil}))
-
+#_(
 (defn- choose-next-owner []
   (let [current-owner (:current-owner @app-state)]
     (if (= current-owner 1) 2 1)))
@@ -44,4 +32,4 @@
       (change-cell-owner index board-cursor)
       (change-current-owner)
       (set-active-board index))))
-
+)
