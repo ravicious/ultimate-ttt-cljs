@@ -33,7 +33,6 @@
                        {:id "release"
                         :source-paths ["src"]
                         :compiler {
-                                   :main ultimate-ttt.core
                                    :asset-path "js/compiled/out-production"
                                    :output-to "resources/public/js/compiled/ultimate_ttt.min.js"
                                    :output-dir "resources/public/js/compiled/out-production"
