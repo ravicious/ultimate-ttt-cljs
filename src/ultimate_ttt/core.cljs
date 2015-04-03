@@ -3,12 +3,12 @@
             [re-frame.core :refer [register-handler
                                    dispatch
                                    subscribe]]
+            [ultimate-ttt.interface.subscriptions]
+            [ultimate-ttt.interface.handlers]
             [ultimate-ttt.game.board :as board-helpers]
             [ultimate-ttt.game.referee :as referee]
             [ultimate-ttt.interface.view-helpers :as view-helpers]
-            [ultimate-ttt.interface.components.main-board :as main-board]
-            [ultimate-ttt.interface.subscriptions]
-            [ultimate-ttt.interface.handlers]))
+            [ultimate-ttt.interface.components.main-board :as main-board]))
 
 (enable-console-print!)
 
@@ -17,11 +17,15 @@
 (defonce initial-state {:main-board (board-helpers/init-board)
                         :current-owner 1
                         :boards (vec (repeat 9 (board-helpers/init-board)))
-                        :active-board nil})
+                        :active-board nil
+                        :database-initialized? true})
 
 (register-handler
   :initialize
-  (fn [_ _] initial-state))
+  (fn [db _]
+    (if (:database-initialized? db)
+      db
+      initial-state)))
 
 (dispatch [:initialize])
 
