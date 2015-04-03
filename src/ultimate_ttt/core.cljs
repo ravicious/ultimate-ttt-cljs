@@ -15,8 +15,7 @@
 
 (println "Ready.")
 
-(fw/start {
-           :on-jsload (fn [] (print "reloaded"))})
+(fw/start {:on-jsload (fn [] (print "reloaded"))})
 
 (defonce initial-state {:main-board (board-helpers/init-board)
                         :current-owner 1
@@ -32,7 +31,7 @@
 (defn game-progress []
   (let [main-board (subscribe [:main-board])
         current-owner (subscribe [:current-owner])]
-    (fn[]
+    (fn []
       (let [winner (referee/find-winner @main-board)
             current-player (view-helpers/owner->player @current-owner)]
         [:div
