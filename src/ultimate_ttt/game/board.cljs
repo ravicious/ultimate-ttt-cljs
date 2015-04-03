@@ -47,10 +47,12 @@
 
 (defn set-cell
   "Given a board and coordinates, sets a new cell owner"
-  [{cells :cells, :as board} x y owner]
-  {:pre [(allowed-owners owner)]}
-  (let [index (calculate-index board x y)]
-    (assoc-in board [:cells index] owner)))
+  ([board x y owner]
+   (let [index (calculate-index board x y)]
+     (set-cell board index owner)))
+  ([board index owner]
+   {:pre [(allowed-owners owner)]}
+   (assoc-in board [:cells index] owner)))
 
 (defn coordinates->owners [board coordinates]
   (map #(get-cell board (first %) (second %)) coordinates))

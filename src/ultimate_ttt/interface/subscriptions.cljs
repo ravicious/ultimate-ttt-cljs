@@ -24,4 +24,4 @@
 (register-sub
   :board
   (fn [db [_ board-index]]
-    (reaction (:board (nth (:boards @db) board-index)))))
+    (reaction (get-in @db [:boards board-index]))))

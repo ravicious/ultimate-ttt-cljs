@@ -8,8 +8,8 @@
             [ultimate-ttt.game.referee :as referee]
             [ultimate-ttt.interface.view-helpers :as view-helpers]
             [ultimate-ttt.interface.components.main-board :as main-board]
-            [ultimate-ttt.interface.state-handler :as state-handler]
-            [ultimate-ttt.interface.subscriptions]))
+            [ultimate-ttt.interface.subscriptions]
+            [ultimate-ttt.interface.handlers]))
 
 (enable-console-print!)
 
@@ -18,17 +18,9 @@
 (fw/start {
            :on-jsload (fn [] (print "reloaded"))})
 
-(defn- init-boards []
-  (let [boards (repeatedly #(board-helpers/init-board 3))
-        coordinates (board-helpers/all-cells 3)]
-    (->>
-      (map list boards coordinates)
-      (map #(zipmap [:board :coordinates] %))
-      (vec))))
-
 (defonce initial-state {:main-board (board-helpers/init-board)
                         :current-owner 1
-                        :boards (init-boards)
+                        :boards (vec (repeat 9 (board-helpers/init-board)))
                         :active-board nil})
 
 (register-handler

@@ -2,8 +2,7 @@
   (:require [reagent.core :as reagent]
             [ultimate-ttt.game.board :as board-helper]
             [ultimate-ttt.interface.view-helpers :as view-helpers]
-            [ultimate-ttt.interface.state-handler :as state-handler]
-            [re-frame.core :refer [subscribe]]))
+            [re-frame.core :refer [subscribe dispatch]]))
 
 (defn- key-for-cell [cell]
   (:cell-index cell))
@@ -13,7 +12,7 @@
 
 (defn- cell-component [{:keys [owner cell-index board-index] :as cell}]
   [:td.minor-board--cell
-   #_{:on-click #(state-handler/on-cell-click index board-index)}
+   {:on-click #(dispatch [:cell-clicked board-index cell-index])}
    (view-helpers/owner->player owner)])
 
 (defn- row-component [cells]
