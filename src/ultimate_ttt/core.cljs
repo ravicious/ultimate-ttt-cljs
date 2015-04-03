@@ -1,6 +1,5 @@
 (ns ^:figwheel-always ultimate-ttt.core
-  (:require [figwheel.client :as fw]
-            [reagent.core :as reagent :refer [atom]]
+  (:require [reagent.core :as reagent :refer [atom]]
             [re-frame.core :refer [register-handler
                                    dispatch
                                    subscribe]]
@@ -14,8 +13,6 @@
 (enable-console-print!)
 
 (println "Ready.")
-
-(fw/start {:on-jsload (fn [] (print "reloaded"))})
 
 (defonce initial-state {:main-board (board-helpers/init-board)
                         :current-owner 1

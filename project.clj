@@ -21,9 +21,9 @@
 
   :cljsbuild {
               :builds [{:id "dev"
-                        :source-paths ["src"]
+                        :source-paths ["src" "dev_src"]
                         :compiler {
-                                   :main ultimate-ttt.core
+                                   :main ultimate-ttt.dev
                                    :asset-path "js/compiled/out-dev"
                                    :output-to "resources/public/js/compiled/ultimate_ttt.js"
                                    :output-dir "resources/public/js/compiled/out-dev"
@@ -33,6 +33,7 @@
                        {:id "release"
                         :source-paths ["src"]
                         :compiler {
+                                   :main ultimate-ttt.core
                                    :asset-path "js/compiled/out-production"
                                    :output-to "resources/public/js/compiled/ultimate_ttt.min.js"
                                    :output-dir "resources/public/js/compiled/out-production"
@@ -42,6 +43,7 @@
                         :source-paths ["src" "test"]
                         :notify-command ["slimerjs" :cljs.test/runner "out-test/ultimate_ttt.test.js"]
                         :compiler {
+                                   :main ultimate-ttt.core
                                    :output-to "out-test/ultimate_ttt.test.js"
                                    :output-dir "out-test"
                                    :optimizations :whitespace
