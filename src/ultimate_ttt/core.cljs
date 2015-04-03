@@ -3,12 +3,12 @@
             [re-frame.core :refer [register-handler
                                    dispatch
                                    subscribe]]
-            [ultimate-ttt.interface.subscriptions]
-            [ultimate-ttt.interface.handlers]
+            [ultimate-ttt.ui.subscriptions]
+            [ultimate-ttt.ui.handlers]
             [ultimate-ttt.game.board :as board-helpers]
             [ultimate-ttt.game.referee :as referee]
-            [ultimate-ttt.interface.view-helpers :as view-helpers]
-            [ultimate-ttt.interface.components.main-board :as main-board]))
+            [ultimate-ttt.ui.view-helpers :as view-helpers]
+            [ultimate-ttt.ui.components.main-board :as main-board]))
 
 (enable-console-print!)
 

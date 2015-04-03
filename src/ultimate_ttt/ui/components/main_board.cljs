@@ -1,6 +1,6 @@
-(ns ultimate-ttt.interface.components.main-board
+(ns ultimate-ttt.ui.components.main-board
   (:require [reagent.core :as reagent]
-            [ultimate-ttt.interface.components.board :as board-component]
+            [ultimate-ttt.ui.components.board :as board-component]
             [re-frame.core :refer [subscribe]]))
 
 (defn key-for-board [board-index]

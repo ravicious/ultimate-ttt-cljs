@@ -1,4 +1,4 @@
-(ns ultimate-ttt.interface.handlers
+(ns ultimate-ttt.ui.handlers
   (:require [re-frame.core :refer [register-handler
                                    dispatch]]
             [ultimate-ttt.game.board :as board-helpers]

@@ -1,7 +1,7 @@
-(ns ultimate-ttt.interface.components.board
+(ns ultimate-ttt.ui.components.board
   (:require [reagent.core :as reagent]
             [ultimate-ttt.game.board :as board-helper]
-            [ultimate-ttt.interface.view-helpers :as view-helpers]
+            [ultimate-ttt.ui.view-helpers :as view-helpers]
             [re-frame.core :refer [subscribe dispatch]]))
 
 (defn- key-for-cell [cell]

@@ -1,4 +1,4 @@
-(ns ultimate-ttt.interface.subscriptions
+(ns ultimate-ttt.ui.subscriptions
   (:require-macros [reagent.ratom :refer [reaction]])
   (:require [reagent.core :as reagent]
             [re-frame.core :refer [subscribe
