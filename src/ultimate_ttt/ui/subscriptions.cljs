@@ -26,8 +26,7 @@
 (register-sub
   :main-board-winner
   (fn [db _]
-    (let [main-board (reaction (:main-board @db))]
-      (reaction (referee/find-winner @main-board)))))
+    (reaction (:winner @db))))
 
 (register-sub
   :board
@@ -38,22 +37,45 @@
   :board-active?
   (fn [db [_ board-index]]
     (let [active-board-index (reaction (:active-board @db))
-          main-board (reaction (:main-board @db))]
-      (reaction (h/board-active? @main-board @active-board-index board-index)))))
+          main-board (reaction (:main-board @db))
+          winner (reaction (:winner @db))]
+      (reaction (and
+                  (h/board-active? @main-board @active-board-index board-index)
+                  (not @winner))))))
+
+(register-sub
+  :winning-board?
+  (fn [db [_ board-index]]
+    (let [main-board (reaction (:main-board @db))
+          winner (reaction (:winner @db))
+          board-owner (reaction (get-in @main-board [:cells board-index]))]
+      (reaction (and
+                  @winner
+                  (= @winner @board-owner))))))
 
 (register-sub
   :cell-activity-statuses
   (fn [db [_ board-index]]
-    (let [active-board-index (reaction (:active-board @db))
-          main-board (reaction (:main-board @db))
+    (let [winner (reaction (:winner @db))
           board (reaction (get-in @db [:boards board-index]))
-          board-active? (reaction (h/board-active? @main-board @active-board-index board-index))
-          get-cell-status #(and
-                             @board-active?
-                             (h/cell-active? @board %))]
-      (->>
-        (board-helpers/size @board)
-        board-helpers/all-indexes
-        (map get-cell-status)
-        vec
-        reaction))))
+          board-size (board-helpers/size @board)
+          all-indexes (board-helpers/all-indexes board-size)
+          ]
+      (if @winner
+        (->>
+          (repeat false)
+          (take (count all-indexes))
+          vec
+          reaction)
+        (let [active-board-index (reaction (:active-board @db))
+              main-board (reaction (:main-board @db))
+              board-active? (reaction (h/board-active? @main-board @active-board-index board-index))
+              get-cell-status #(and
+                                 @board-active?
+                                 (h/cell-active? @board %))]
+          (->>
+            (board-helpers/size @board)
+            board-helpers/all-indexes
+            (map get-cell-status)
+            vec
+            reaction))))))

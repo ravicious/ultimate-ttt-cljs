@@ -18,7 +18,8 @@
                         :current-owner 1
                         :boards (vec (repeat 9 (board-helpers/init-board)))
                         :active-board nil
-                        :database-initialized? true})
+                        :database-initialized? true
+                        :winner nil})
 
 (register-handler
   :initialize
@@ -35,10 +36,9 @@
     (fn []
       (let [current-player (view-helpers/owner->player @current-owner)]
         [:div
-         [:p (if
-               (nil? @winner)
-               (str current-player "s turn")
-               (str current-player "s won!"))]]))))
+         [:p (if @winner
+               (str (view-helpers/owner->player @winner) "s won!")
+               (str current-player "s turn"))]]))))
 
 (defn root []
   [:div

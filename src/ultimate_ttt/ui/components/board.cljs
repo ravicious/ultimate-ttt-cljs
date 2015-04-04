@@ -27,6 +27,7 @@
 (defn board [board-index]
   (let [board-record (subscribe [:board board-index])
         board-active? (subscribe [:board-active? board-index])
+        winning-board? (subscribe [:winning-board? board-index])
         cell-activity-statuses (subscribe [:cell-activity-statuses board-index])]
     (fn []
       (let [board-size (board-helper/size @board-record)
@@ -34,7 +35,8 @@
             cells (map #(zipmap [:owner :cell-index :board-index :active?] %) raw-cells)
             rows (partition 3 cells)
             classes (hutil/classnames {:active @board-active?
-                                       :inactive (not @board-active?)})]
+                                       :inactive (not @board-active?)
+                                       :winning @winning-board?})]
         [:table.minor-board--table
          {:class classes}
          (doall

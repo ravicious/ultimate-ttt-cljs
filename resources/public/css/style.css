@@ -22,3 +22,7 @@
 .minor-board--table.active   .minor-board--cell.inactive {
   cursor: default;
 }
+
+.minor-board--table.winning {
+  border: 3px solid gold;
+}
