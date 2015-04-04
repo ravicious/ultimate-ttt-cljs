@@ -31,20 +31,22 @@
   :board-active?
   (fn [db [_ board-index]]
     (let [active-board-index (reaction (:active-board @db))
-          board (reaction (get-in @db [:boards board-index]))]
-      (reaction (h/board-active? @active-board-index board-index @board)))))
+          main-board (reaction (:main-board @db))]
+      (reaction (h/board-active? @main-board @active-board-index board-index)))))
 
 (register-sub
   :cell-activity-statuses
   (fn [db [_ board-index]]
     (let [active-board-index (reaction (:active-board @db))
+          main-board (reaction (:main-board @db))
           board (reaction (get-in @db [:boards board-index]))
-          get-cell-status #(h/board-and-cell-active? @active-board-index
-                                                     board-index
-                                                     @board
-                                                     %)]
+          board-active? (reaction (h/board-active? @main-board @active-board-index board-index))
+          get-cell-status #(and
+                             @board-active?
+                             (h/cell-active? @board %))]
       (->>
-        (:cells @board)
+        (board-helpers/size @board)
+        board-helpers/all-indexes
         (map get-cell-status)
         vec
         reaction))))

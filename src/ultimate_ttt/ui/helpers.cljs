@@ -1,17 +1,16 @@
-(ns ultimate-ttt.ui.helpers
-  (:require [ultimate-ttt.game.referee :as referee]))
+(ns ultimate-ttt.ui.helpers)
 
 (defn cell-active? [board cell-index]
   (= 0 (get-in board [:cells cell-index])))
 
-(defn board-active? [active-board-index board-index board]
+(defn board-active? [main-board active-board-index board-index]
   (and
     (or
       (nil? active-board-index)
       (= active-board-index board-index))
-    (not (referee/find-winner board))))
+    (cell-active? main-board board-index)))
 
-(defn board-and-cell-active? [active-board-index board-index board cell-index]
+(defn board-and-cell-active? [main-board active-board-index board-index board cell-index]
   (and
-    (board-active? active-board-index board-index board)
+    (board-active? main-board active-board-index board-index)
     (cell-active? board cell-index)))

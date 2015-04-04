@@ -5,7 +5,7 @@
 (defn- horizontal-rows
   "Given a board size, returns all of its horizontal rows."
   [board-size]
-  (partition board-size board-size (board/all-cells board-size)))
+  (vec (partition board-size board-size (board/all-cells board-size))))
 
 (defn- row-coordinates?
   "Checks if given coordinates are in the same row and if they cover all of it.

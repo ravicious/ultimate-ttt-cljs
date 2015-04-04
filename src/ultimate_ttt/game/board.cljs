@@ -42,8 +42,10 @@
 
 (defn get-cell
   "Given a board and coordinates, returns the cell owner"
-  [{cells :cells, :as board} x y]
-  (nth cells (calculate-index board x y)))
+  ([board x y]
+   (get-cell board (calculate-index board x y)))
+  ([board index]
+   (get-in board [:cells index])))
 
 (defn set-cell
   "Given a board and coordinates, sets a new cell owner"
@@ -63,4 +65,9 @@
   (for [x (range 0 board-size)
         y (range 0 board-size)]
     (list x y)))
+
+(defn all-indexes
+  "Given a board size, returns indexes for all possible cells in a board."
+  [board-size]
+  (vec (range (* board-size board-size))))
 
