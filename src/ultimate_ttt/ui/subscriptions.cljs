@@ -3,7 +3,8 @@
   (:require [reagent.core :as reagent]
             [re-frame.core :refer [subscribe
                                    register-sub]]
-            [ultimate-ttt.game.board :as board-helpers]))
+            [ultimate-ttt.game.board :as board-helpers]
+            [ultimate-ttt.ui.helpers :as h]))
 
 (register-sub
   :current-owner
@@ -25,3 +26,25 @@
   :board
   (fn [db [_ board-index]]
     (reaction (get-in @db [:boards board-index]))))
+
+(register-sub
+  :board-active?
+  (fn [db [_ board-index]]
+    (let [active-board-index (reaction (:active-board @db))
+          board (reaction (get-in @db [:boards board-index]))]
+      (reaction (h/board-active? @active-board-index board-index @board)))))
+
+(register-sub
+  :cell-activity-statuses
+  (fn [db [_ board-index]]
+    (let [active-board-index (reaction (:active-board @db))
+          board (reaction (get-in @db [:boards board-index]))
+          get-cell-status #(h/board-and-cell-active? @active-board-index
+                                                     board-index
+                                                     @board
+                                                     %)]
+      (->>
+        (:cells @board)
+        (map get-cell-status)
+        vec
+        reaction))))
