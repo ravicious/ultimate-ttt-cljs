@@ -2,21 +2,13 @@
   (:require [re-frame.core :refer [register-handler
                                    dispatch]]
             [ultimate-ttt.game.board :as board-helpers]
-            [ultimate-ttt.game.referee :as referee]))
-
-(defn- is-cell-empty? [db board-index cell-index]
-  (= 0 (get-in db [:boards board-index :cells cell-index])))
-
-(defn- is-active? [active-board board-index]
-  (or
-    (nil? active-board)
-    (= active-board board-index)))
+            [ultimate-ttt.game.referee :as referee]
+            [ultimate-ttt.ui.helpers :as h]))
 
 (defn- valid-move? [db board-index cell-index]
-  (let [active-board (:active-board db)]
-    (and
-      (is-active? active-board board-index)
-      (is-cell-empty? db board-index cell-index))))
+  (let [active-board-index (:active-board db)
+        board (get-in db [:boards board-index])]
+    (h/board-and-cell-active? active-board-index board-index board cell-index)))
 
 (register-handler
   :change-cell-owner
