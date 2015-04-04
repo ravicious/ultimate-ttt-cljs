@@ -49,4 +49,7 @@
                                    :optimizations :whitespace
                                    :pretty-print true
                                    :cache-analysis true}}]
-              :test-commands {"test" ["slimerjs" :runner "out-test/ultimate_ttt.test.js"]}})
+              :test-commands {"test" ["slimerjs" :runner "out-test/ultimate_ttt.test.js"]}}
+
+  :figwheel {
+             :css-dirs ["resources/public/css"]})

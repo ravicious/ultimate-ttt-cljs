@@ -1,0 +1,24 @@
+* { font-family: monospace; box-sizing: border-box; }
+
+.minor-board--table {
+  margin: 2px;
+  border-collapse: collapse;
+}
+
+.minor-board--table.active {
+  background-color: green;
+  color: white;
+}
+
+.minor-board--cell {
+  padding: 2pt;
+}
+
+.minor-board--table.active .minor-board--cell {
+  cursor: pointer;
+}
+
+.minor-board--table.inactive .minor-board--cell,
+.minor-board--table.active   .minor-board--cell.inactive {
+  cursor: default;
+}
