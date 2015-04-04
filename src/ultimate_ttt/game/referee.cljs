@@ -19,6 +19,7 @@
     :else nil))
 
 (defn find-winner [board]
+  "Given a board, returns the winning owner or nil. Be careful, it's a very expensive operation!"
   (->>
    (b/size board)
    (extract-row-coordinates)
