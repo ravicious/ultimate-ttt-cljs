@@ -26,10 +26,10 @@
 
 (register-handler
   :change-active-board
-  (fn [db [_ clicked-cell-index]]
-    (let [next-board (get-in db [:boards clicked-cell-index])]
-      (if-not (referee/find-winner next-board)
-        (assoc db :active-board clicked-cell-index)
+  (fn [db [_ next-board-index]]
+    (let [main-board (:main-board db)]
+      (if (h/cell-active? main-board next-board-index) ; check if the next board hasn't been finished yet
+        (assoc db :active-board next-board-index)
         (assoc db :active-board nil)))))
 
 (defn updated-main-board
