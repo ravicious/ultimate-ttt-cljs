@@ -30,16 +30,15 @@
 (dispatch [:initialize])
 
 (defn game-progress []
-  (let [main-board (subscribe [:main-board])
+  (let [winner (subscribe [:main-board-winner])
         current-owner (subscribe [:current-owner])]
     (fn []
-      (let [winner (referee/find-winner @main-board)
-            current-player (view-helpers/owner->player @current-owner)]
+      (let [current-player (view-helpers/owner->player @current-owner)]
         [:div
          [:p (if
-               (nil? winner)
+               (nil? @winner)
                (str current-player "s turn")
-               (str (view-helpers/owner->player winner) "s won!"))]]))))
+               (str current-player "s won!"))]]))))
 
 (defn root []
   [:div

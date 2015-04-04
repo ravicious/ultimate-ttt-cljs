@@ -4,6 +4,7 @@
             [re-frame.core :refer [subscribe
                                    register-sub]]
             [ultimate-ttt.game.board :as board-helpers]
+            [ultimate-ttt.game.referee :as referee]
             [ultimate-ttt.ui.helpers :as h]))
 
 (register-sub
@@ -21,6 +22,12 @@
   (fn [db _]
     (let [main-board (reaction (:main-board @db))]
       (reaction (count (:cells @main-board))))))
+
+(register-sub
+  :main-board-winner
+  (fn [db _]
+    (let [main-board (reaction (:main-board @db))]
+      (reaction (referee/find-winner @main-board)))))
 
 (register-sub
   :board
