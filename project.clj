@@ -6,7 +6,8 @@
                  [org.clojure/clojurescript "0.0-3058"]
                  [figwheel "0.2.5-SNAPSHOT"]
                  [reagent "0.5.0"]
-                 [re-frame "0.2.0"]]
+                 [re-frame "0.2.0"]
+                 [com.cemerick/double-check "0.6.1"]]
 
   :node-dependencies [[source-map-support "0.2.8"]]
 
