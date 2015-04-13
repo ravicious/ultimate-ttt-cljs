@@ -1,6 +1,5 @@
 (ns ultimate-ttt.ui.components.board
   (:require [reagent.core :as reagent]
-            [ultimate-ttt.game.board :as board-helper]
             [ultimate-ttt.ui.view-helpers :as view-helpers]
             [re-frame.core :refer [subscribe dispatch]]
             [hiccup-util.core :as hutil]))
@@ -30,8 +29,7 @@
         winning-board? (subscribe [:winning-board? board-index])
         cell-activity-statuses (subscribe [:cell-activity-statuses board-index])]
     (fn []
-      (let [board-size (board-helper/size @board-record)
-            raw-cells (map vector (:cells @board-record) (range) (repeat board-index) @cell-activity-statuses)
+      (let [raw-cells (map vector (:cells @board-record) (range) (repeat board-index) @cell-activity-statuses)
             cells (map #(zipmap [:owner :cell-index :board-index :active?] %) raw-cells)
             rows (partition 3 cells)
             classes (hutil/classnames {:active @board-active?

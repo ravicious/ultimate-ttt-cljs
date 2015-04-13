@@ -4,7 +4,6 @@
             [re-frame.core :refer [subscribe
                                    register-sub]]
             [ultimate-ttt.game.board :as board-helpers]
-            [ultimate-ttt.game.referee :as referee]
             [ultimate-ttt.ui.helpers :as h]))
 
 (register-sub
@@ -57,16 +56,9 @@
   :cell-activity-statuses
   (fn [db [_ board-index]]
     (let [winner (reaction (:winner @db))
-          board (reaction (get-in @db [:boards board-index]))
-          board-size (board-helpers/size @board)
-          all-indexes (board-helpers/all-indexes board-size)
-          ]
+          board (reaction (get-in @db [:boards board-index]))]
       (if @winner
-        (->>
-          (repeat false)
-          (take (count all-indexes))
-          vec
-          reaction)
+        (reaction (vec (take 9 (repeat false))))
         (let [active-board-index (reaction (:active-board @db))
               main-board (reaction (:main-board @db))
               board-active? (reaction (h/board-active? @main-board @active-board-index board-index))
@@ -74,8 +66,7 @@
                                  @board-active?
                                  (h/cell-active? @board %))]
           (->>
-            (board-helpers/size @board)
-            board-helpers/all-indexes
+            (board-helpers/all-indexes)
             (map get-cell-status)
             vec
             reaction))))))

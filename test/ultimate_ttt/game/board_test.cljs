@@ -13,17 +13,17 @@
 
 (deftest init-board
   (testing "number of cells equals to the squared board size"
-    (is (= 16 (count (:cells (b/init-board 4))))))
-  (testing "default size is 3"
-    (is (= 3 (b/size (b/init-board))))))
+    (is (= 9 (count (:cells (b/init-board))))))
+  (testing "all cells have no owner"
+    (is (= [0] (distinct (:cells (b/init-board)))))))
 
 (deftest within-bounds?
   (testing "first cell"
-    (is (b/within-bounds? board 0 0)))
+    (is (b/within-bounds? 0 0)))
   (testing "last cell"
-    (is (b/within-bounds? board 2 2)))
+    (is (b/within-bounds? 2 2)))
   (testing "position equal to board size"
-    (is (not (b/within-bounds? board 3 3)))))
+    (is (not (b/within-bounds? 3 3)))))
 
 (deftest get-cell
   (testing "first cell"
