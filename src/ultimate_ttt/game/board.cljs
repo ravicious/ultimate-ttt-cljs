@@ -4,41 +4,32 @@
 
 (defrecord Board [cells])
 
-(defn size [{cells :cells}]
-  (Math/sqrt (count cells)))
-
-(defn within-bounds? [board & coordinates]
+(defn within-bounds? [& coordinates]
   (let [sorted-coordinates (sort coordinates)
-        board-size (size board)
-        upper-bound (dec board-size)
+        upper-bound 2 ; we assume the max size of the board is 3, so 2 is the max coordinate value
         lower-bound 0
         bounds-with-coordinates (list lower-bound sorted-coordinates upper-bound)]
     (apply <= (flatten bounds-with-coordinates))))
 
 (defn- init-cells
   "Creates a list of cells with no owner"
-  [board-size]
-  (vec (take (* board-size board-size) (repeat 0))))
+  []
+  (vec (take 9 (repeat 0))))
 
-(defn init-board
-  ([]
-   (init-board 3))
-  ([board-size]
-   (Board. (init-cells board-size))))
+(defn init-board []
+  (Board. (init-cells)))
 
 (defn- calculate-index
   "Translates 2D coordinates to an index in one-dimensional array"
   [board x y]
-  {:pre [(within-bounds? board x y)]}
-  (let [board-size (size board)]
-    (+ y (* board-size x))))
+  {:pre [(within-bounds? x y)]}
+  (+ y (* 3 x)))
 
 (defn calculate-coordinates
   "Translates 1D index to 2D coordinates"
   [board i]
-  {:post [(apply within-bounds? board %)]}
-  (let [board-size (size board)]
-    (list (quot i board-size) (mod i board-size))))
+  {:post [(apply within-bounds? %)]}
+  (list (quot i 3) (mod i 3)))
 
 (defn get-cell
   "Given a board and coordinates, returns the cell owner"
@@ -60,14 +51,14 @@
   (map #(get-cell board (first %) (second %)) coordinates))
 
 (defn all-cells
-  "Given a board size, returns coordinates for all possible cells in a board."
-  [board-size]
-  (for [x (range 0 board-size)
-        y (range 0 board-size)]
+  "Returns coordinates for all possible cells in a board."
+  []
+  (for [x (range 0 3)
+        y (range 0 3)]
     (list x y)))
 
 (defn all-indexes
-  "Given a board size, returns indexes for all possible cells in a board."
-  [board-size]
-  (vec (range (* board-size board-size))))
+  "Returns indexes for all possible cells in a board."
+  []
+  (range 9))
 

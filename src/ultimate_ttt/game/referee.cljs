@@ -1,6 +1,10 @@
 (ns ultimate-ttt.game.referee
-  (:require [ultimate-ttt.game.board :as b]
-            [ultimate-ttt.game.extract-row-coordinates :refer [extract-row-coordinates]]))
+  (:require [ultimate-ttt.game.board :as b]))
+
+(def ^{:private true
+       :doc "All rows (horizontal, vertical, diagonal) of a TTT board of size 3."}
+  row-coordinates
+  '[((0 0) (0 1) (0 2)) ((1 0) (1 1) (1 2)) ((2 0) (2 1) (2 2)) ((0 0) (1 0) (2 0)) ((0 0) (1 1) (2 2)) ((0 1) (1 1) (2 1)) ((0 2) (1 1) (2 0)) ((0 2) (1 2) (2 2))])
 
 (defn- any-row-won-by-player?
   "Given rows of cell owners, determines if any row has been won by player x"
@@ -21,7 +25,6 @@
 (defn find-winner [board]
   "Given a board, returns the winning owner or nil. Be careful, it's a very expensive operation!"
   (->>
-   (b/size board)
-   (extract-row-coordinates)
+    row-coordinates
    (map #(b/coordinates->owners board %))
    (select-winner)))
