@@ -3,7 +3,7 @@
   :url "https://github.com/ravicious/ultimate-ttt-cljs"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-3058"]
+                 [org.clojure/clojurescript "0.0-3196"]
                  [figwheel "0.2.5-SNAPSHOT"]
                  [reagent "0.5.0"]
                  [re-frame "0.2.0"]
